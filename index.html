@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>good game empire helpers</title>
+        
+        <!-- include dependencies -->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        
+        <!-- include foundation -->
+        <link rel="stylesheet" href="bower_components/foundation/css/foundation.css">
+        <script src="bower_components/foundation/js/foundation.min.js"></script>
+        
+        <!-- style -->
+        <link rel="stylesheet" href="style.css">
+        
+        <!-- app -->
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <nav class="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name"><h1><a href="/">Rust rfc viewer</a></h1></li>
+                <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+            </ul>
+            <section class="top-bar-section">
+                <ul class="right">
+                    <li><a href="/page/afstanden">afstanden</a></li>
+                </ul>
+            </section>
+        </nav>
+        
+        <main class="row">
+            <ol id="rfc_list">
+                <h1 role="progressbar">Loading</h1>
+            </ol>
+        </main>
+        
+        <article hidden id="rfc_text_wrapper"><div id="rfc_text"></div></article>
+    </body>
+</html>

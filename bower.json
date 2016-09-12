@@ -1,0 +1,26 @@
+{
+  "name": "rust_rfc_viewer",
+  "authors": [
+    "bjorn3 <bjorn3@users.noreply.github.com>"
+  ],
+  "description": "A viewer for rust rfcs",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "rust-lang",
+    "rfc"
+  ],
+  "license": "GPL-3.0",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "~5.5.3",
+    "jquery": "~3.1.0"
+  }
+}

@@ -1,0 +1,72 @@
+#rfc_list{
+    display: block;
+    list-style: none;
+}
+
+#rfc_list li{
+    display: block;
+    
+    border: 1px solid;
+    border-radius: 5px;
+    
+    margin: 10px 0px;
+    padding: 5px;
+}
+
+#rfc_list span{
+    padding: 5px;
+    max-width: 90%;
+}
+
+#rfc_list .state{
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 10px;
+}
+
+#rfc_list .state.Accepted{
+    background: green;
+}
+
+#rfc_list .state.Open{
+    background: blue;
+}
+
+#rfc_list .state.Rejected{
+    background: red;
+}
+
+#rfc_list .id{
+    padding: 5px;
+}
+
+#rfc_list .buttons{
+    margin-top: -5px !important;
+    margin: 0px;
+    float: right;
+}
+
+#rfc_text_wrapper{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,.5);
+}
+
+#rfc_text{
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    background: white;
+    max-width: 1000px;
+    height: 90vh;
+    
+    overflow: scroll;
+}
+
+#rfc_text .close_button{
+    float: right;
+    margin: 10px;
+}
