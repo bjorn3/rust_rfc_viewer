@@ -65,6 +65,7 @@ window.onload = function(){
             }).then(function(json){
                 console.log(json);
                 for(let pr of json){
+                    if(pr.number > 1500){continue;} //HACK to prevent the browser from crashing
                     let state;
                     if(pr.merged_at){
                         state = "Accepted";
