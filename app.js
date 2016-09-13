@@ -25,7 +25,7 @@
 
 let rfc_data = [];
 
-let template = `<li>
+let template = `<li id="rfc-{{id}}">
     <span class="state {{state}}">{{state}}</span><span class="id">{{id}}</span><span class="name">{{name}}</span>
     <span class="buttons">
         <a href="#" data-file="{{text}}" onclick="open_text_popup(event)">Text</a>
@@ -65,7 +65,6 @@ window.onload = function(){
             }).then(function(json){
                 console.log(json);
                 for(let pr of json){
-                    if(pr.number > 1500){continue;} //HACK to prevent the browser from crashing
                     let state;
                     if(pr.merged_at){
                         state = "Accepted";
@@ -96,23 +95,30 @@ window.onload = function(){
         }
     }, 5000);
     
-    show_rfcs();
+    requestAnimationFrame(show_rfcs);
 };
 
+let already_inserted_rfcs = [];
+
 function show_rfcs(){
-    let rfc_list = document.querySelector("#rfc_list");
+    let rfc_list = document.getElementById("rfc_list");
     rfc_data = rfc_data.sort(function(a,b){
         return a.id > b.id;
     });
-    rfc_list.innerHTML = "";
+    //rfc_list.innerHTML = "";
     for(let rfc of rfc_data){
+        //if(rfc.id > 100){continue;} //HACK to prevent the browser from crashing
+        if(already_inserted_rfcs.indexOf(rfc.id) !== -1){
+            continue;
+        }
         rfc_list.innerHTML += template
-            .replace("{{id}}", rfc.id)
+            .replace(/{{id}}/g, rfc.id)
             .replace("{{name}}", rfc.name)
             .replace("{{text}}", rfc.text)
             .replace("{{discussion}}", rfc.discussion)
             .replace(/{{state}}/g, rfc.state)
         ;
+        already_inserted_rfcs.push(rfc.id);
     }
 }
 
