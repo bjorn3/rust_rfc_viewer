@@ -7,6 +7,6 @@ Dual-licensed under MIT and APL.
 Warning: this may crash your browser, because every rfc is rendered which could be too many elements.
 
 ## Todo:
-[ ] Add filters
-[ ] Cache rfcs
-[ ] Plug markdown renderer in
+- [ ] Add filters
+- [ ] Cache rfcs
+- [ ] Plug markdown renderer in
