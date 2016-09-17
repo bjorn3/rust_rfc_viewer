@@ -122,13 +122,20 @@ function show_rfcs(){
     }
 }
 
+let showdown_inst = new showdown.Converter({
+    tables: true,
+    ghCodeBlocks: true,
+    tasklists: true,
+    simplifiedAutoLink: true
+});
+
 function open_text_popup(evt){
     evt.preventDefault();
     fetch(evt.originalTarget.dataset.file)
         .then(function(res){
             return res.text();
         }).then(function(text){
-            document.querySelector("#rfc_text").innerHTML = "<a href=\"#\" onclick=\"close_text_popup(event)\" class=\"close_button\">X</a>" + text;
+            document.querySelector("#rfc_text").innerHTML = "<a href=\"#\" onclick=\"close_text_popup(event)\" class=\"close_button\">X</a>" + showdown_inst.makeHtml(text);
             document.querySelector("#rfc_text_wrapper").hidden = false;
         });
 }
