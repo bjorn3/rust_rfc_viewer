@@ -70,7 +70,7 @@ function get_rfcs_from_pr_list(url){
                     window.rfc_data.push({
                         id: pr.number,
                         name: pr.title,
-                        text: null,
+                        text: pr.url,
                         discussion: pr.html_url,
                         state: state
                     });

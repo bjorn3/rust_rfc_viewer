@@ -80,14 +80,23 @@ let showdown_inst = new showdown.Converter({
 });
 
 function open_text_popup(evt){
-    evt.preventDefault();
-    fetch(evt.originalTarget.dataset.file)
+    let req = new Request(evt.originalTarget.dataset.file, {
+        headers: new Headers({
+            'Accept': 'application/vnd.github.v3.diff'
+        })
+    });
+    fetch(req)
         .then(function(res){
             return res.text();
         }).then(function(text){
+            if(evt.originalTarget.dataset.file.indexOf("https://api.github.com") === 0){
+                text = "```diff\n" + text + "```";
+            }
             document.querySelector("#rfc_text").innerHTML = "<a href=\"#\" onclick=\"close_text_popup(event)\" class=\"close_button\">X</a>" + showdown_inst.makeHtml(text);
             document.querySelector("#rfc_text_wrapper").hidden = false;
         });
+    
+    evt.preventDefault();
 }
 
 function open_url_popup(evt){
