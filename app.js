@@ -18,7 +18,7 @@
 //jshint camelcase:false
 //jshint browser:true
 //jshint esnext:true
-/* globals fetch */
+/* globals fetch, showdown */
 /* exported open_text_popup, open_url_popup, close_text_popup*/
 
 "use strict";
@@ -120,6 +120,7 @@ function show_rfcs(){
         ;
         already_inserted_rfcs.push(rfc.id);
     }
+    document.getElementsByClassName("spinner-wrapper")[0].hidden = true;
 }
 
 let showdown_inst = new showdown.Converter({

@@ -14,6 +14,16 @@ Copyright 2016 bjorn3
    limitations under the License.
 */
 
+body{
+    height: 100vh;
+    overflow: hidden;
+}
+
+main.row{
+    height: calc(100vh - 20px);
+    overflow: scroll;
+}
+
 #rfc_list{
     display: block;
     list-style: none;
@@ -77,6 +87,7 @@ Copyright 2016 bjorn3
     
     background: white;
     max-width: 1000px;
+    width: calc(100vw - 50px);
     height: 90vh;
     
     overflow: scroll;

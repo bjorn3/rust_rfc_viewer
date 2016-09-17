@@ -32,6 +32,7 @@
         
         <!-- style -->
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="spinner.css">
         
         <!-- app -->
         <script src="app.js"></script>
@@ -44,14 +45,20 @@
             </ul>
             <section class="top-bar-section">
                 <ul class="right">
-                    <li><a href="/page/afstanden">afstanden</a></li>
+                    
                 </ul>
             </section>
         </nav>
         
+        <div class="spinner-wrapper" style="width: 60px; height: 60px; position: absolute; top: 0; left: 0; bottom: 80px; right: 0; margin: auto;margin: auto;">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+        
         <main class="row">
             <ol id="rfc_list">
-                <h1 role="progressbar">Loading</h1>
             </ol>
         </main>
         
