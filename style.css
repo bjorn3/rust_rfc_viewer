@@ -39,6 +39,10 @@ main.row{
     padding: 5px;
 }
 
+#rfc_list:last-child{
+    margin-bottom: 30px;
+}
+
 #rfc_list span{
     padding: 5px;
     max-width: 90%;

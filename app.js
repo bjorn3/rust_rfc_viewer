@@ -34,7 +34,6 @@ let template = `<li id="rfc-{{id}}">
 </li>`;
 
 window.onload = function(){
-    
     fetch("https://api.github.com/repos/rust-lang/rfcs/contents/text").then((res)=>res.json())
         .then(function(json){
             console.log(json);
@@ -47,56 +46,54 @@ window.onload = function(){
                     state: "Accepted"
                 });
             }
-            show_rfcs();
+            requestAnimationFrame(show_rfcs);
         });
-    
-    let next_pr_url = "https://api.github.com/repos/rust-lang/rfcs/pulls?state=all";
-    function pr_status(url){
-        fetch(url)
-            .then(function(res){
-                console.log(res);
-                let prs_url = res.headers.get("Link").split(";")[0].replace(/^<(.*)>$/, "$1");
-                if(next_pr_url === prs_url){
-                    next_pr_url = null;
-                }else{
-                    next_pr_url = prs_url;
-                }
-                return res.json();
-            }).then(function(json){
-                console.log(json);
-                for(let pr of json){
-                    let state;
-                    if(pr.merged_at){
-                        state = "Accepted";
-                    }else if(pr.state === "open"){
-                        state = "Open";
-                    }else if(pr.state === "closed"){
-                        state = "Rejected";
-                    }else{
-                        console.log(pr.state);
-                    }
-                    rfc_data.push({
-                        id: pr.number,
-                        name: pr.title,
-                        text: pr.name,
-                        discussion: pr.html_url,
-                        state: state
-                    });
-                }
-                show_rfcs();
-            });
-    }
-    
-    let pr_status_interval = window.setInterval(function(){
-        if(next_pr_url){
-            pr_status(next_pr_url);
-        }else{
-            window.clearInterval(pr_status_interval);
-        }
-    }, 5000);
-    
-    requestAnimationFrame(show_rfcs);
+        
+        let pr_status_interval = window.setInterval(function(){
+            if(next_pr_url){
+                pr_status(next_pr_url);
+            }else{
+                window.clearInterval(pr_status_interval);
+            }
+        }, 5000);
 };
+
+let next_pr_url = "https://api.github.com/repos/rust-lang/rfcs/pulls?state=all";
+function pr_status(url){
+    fetch(url)
+        .then(function(res){
+            console.log(res);
+            let prs_url = res.headers.get("Link").split(";")[0].replace(/^<(.*)>$/, "$1");
+            if(next_pr_url === prs_url){
+                next_pr_url = null;
+            }else{
+                next_pr_url = prs_url;
+            }
+            return res.json();
+        }).then(function(json){
+            console.log(json);
+            for(let pr of json){
+                let state;
+                if(pr.merged_at){
+                    state = "Accepted";
+                }else if(pr.state === "open"){
+                    state = "Open";
+                }else if(pr.state === "closed"){
+                    state = "Rejected";
+                }else{
+                    console.log(pr.state);
+                }
+                rfc_data.push({
+                    id: pr.number,
+                    name: pr.title,
+                    text: pr.name,
+                    discussion: pr.html_url,
+                    state: state
+                });
+            }
+            requestAnimationFrame(show_rfcs);
+        });
+}
 
 let already_inserted_rfcs = [];
 
